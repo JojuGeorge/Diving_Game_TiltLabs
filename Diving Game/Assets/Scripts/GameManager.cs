@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour
     private void ResetPlayerPos() {
         _player.transform.position = _checkPoint.transform.position;
         _player.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        _player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Rigidbody _playerRB = _player.GetComponent<Rigidbody>();
+        _playerRB.freezeRotation = true;
+        _playerRB.velocity = Vector3.zero;
     }
 
 }

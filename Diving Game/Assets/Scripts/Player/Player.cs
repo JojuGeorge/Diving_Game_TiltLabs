@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] private float _jumpForce;
-    [SerializeField] private bool _jump;
+    [SerializeField] private bool _jumping;
     [SerializeField] private float _power;
     [SerializeField] private float _maxPower;
-
+    [SerializeField] private bool _falling;
+    [SerializeField] private float _fallingThreshold;
+    [SerializeField] private float _rotateAngle;
 
 
     private Rigidbody _rb;
@@ -30,17 +32,28 @@ public class Player : MonoBehaviour
             JumpPowerUP();
         }
         else {
-            _jump = false;
+            _jumping = false;
             _power = 0f;
+
+            // Checking if player is falling
+            if (_rb.velocity.y < _fallingThreshold) {
+                _falling = true;
+            }
         }
     }
 
     private void FixedUpdate()
     {
         // If grounded and jump = true i.e button release then add force to player
-        if (_checkGrounded.Grounded && _jump)
+        if (_checkGrounded.Grounded && _jumping)
         {
             Jump();
+        }
+
+        if (!_checkGrounded.Grounded && _falling && Input.GetMouseButton(0))
+        {
+            _rb.freezeRotation = false;
+            TuckAndFlip();
         }
     }
 
@@ -61,7 +74,7 @@ public class Player : MonoBehaviour
         // After powering up and releasing the button, set jump = true to add force to player
         if (Input.GetMouseButtonUp(0))
         {
-            _jump = true;
+            _jumping = true;
         }
     }
 
@@ -70,5 +83,9 @@ public class Player : MonoBehaviour
         _rb.AddForce(new Vector3(1f, 1f, 0f)* _jumpForce * _power, ForceMode.Force); 
     }
 
-    
+
+    private void TuckAndFlip() {
+        Vector3 position = gameObject.GetComponentInChildren<Collider>().bounds.center;
+        transform.RotateAround(position, Vector3.forward, -_rotateAngle);
+    }
 }
