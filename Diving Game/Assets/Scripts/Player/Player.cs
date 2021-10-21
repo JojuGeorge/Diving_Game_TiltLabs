@@ -12,14 +12,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rotateAngle;
     
     [Range(1,5)] [SerializeField] private float _fallingThreshold;
-    [Range(1,5)] [SerializeField] private float _gravityModifier;
-    [Range(1, 50)] [SerializeField] private float _maxFallingVelocity;
+    [Range(8, 12)] [SerializeField] private float _gravityModifierNormal;
+    [Range(12, 20)] [SerializeField] private float _gravityModifierTuckedIn;
 
 
     private Rigidbody _rb;
     private CheckGrounded _checkGrounded;
 
-    public enum ButtonState { Off, Down, Held, Up}
+    public enum ButtonState { Off, Down, Held, Up}                  // For getting input from Update() and move obj based on input in FixedUpdate();
     public ButtonState mouseButtonState = ButtonState.Off;
 
     public bool falling;
@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
             falling = false;
         }
 
-        Debug.Log(Mathf.Abs(_rb.velocity.y));
     }
 
     private void FixedUpdate()
@@ -79,19 +78,20 @@ public class Player : MonoBehaviour
         }
 
 
+        // When tuckedin increase fall velocity
         if (falling && tuckedIn)
         {
-            _rb.velocity += Vector3.up * Physics.gravity.y * (_gravityModifier - 1) * Time.fixedDeltaTime ;
-            if (Mathf.Abs(_rb.velocity.y) >= _maxFallingVelocity) {
-                _rb.velocity = new Vector3(0f, -_maxFallingVelocity, 0f);
-            }
+            _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(0f, -_gravityModifierTuckedIn, 0f), .5f);
+
         }
         else if(falling && !tuckedIn) {
-            _rb.velocity = Physics.gravity;
+
+            _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(0f, -_gravityModifierNormal, 0f), .2f);
+
         }
 
-        //Debug.Log(Physics.gravity);
 
+        Debug.Log(Mathf.Abs(_rb.velocity.y));
     }
 
 
@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
             mouseButtonState = ButtonState.Held;
         }
 
+        // To get mouse button state to make chnages on physics obj in the FixedUpdate()
         if (Input.GetMouseButtonUp(0)) {
             mouseButtonState = ButtonState.Up;
         }
@@ -121,6 +122,7 @@ public class Player : MonoBehaviour
     }
 
 
+    // On tucking in slowly rotate the body
     private void TuckAndFlip() {
         Vector3 position = gameObject.GetComponentInChildren<Collider>().bounds.center;
         transform.RotateAround(position, Vector3.left, -_rotateAngle);
