@@ -27,6 +27,13 @@ public class CoinMultiplierEvent : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Water") {
+            Debug.Log("Water>>>>>>>>>>>>>>>>>");
+        }
+    }
+
 
     private float DiveAngleCalc() {
         Vector3 worldUp = Vector3.up;
