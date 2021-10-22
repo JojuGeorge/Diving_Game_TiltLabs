@@ -11,10 +11,6 @@ public class CheckGrounded : MonoBehaviour
     private bool _grounded;
     public bool Grounded { get { return _grounded; } }
 
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

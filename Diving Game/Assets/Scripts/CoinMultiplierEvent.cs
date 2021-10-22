@@ -13,15 +13,6 @@ public class CoinMultiplierEvent : MonoBehaviour
     public delegate void DiveAng(string value, float multiplyValue);
     public static event DiveAng OnDiving;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
