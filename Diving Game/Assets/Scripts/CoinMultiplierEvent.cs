@@ -30,6 +30,8 @@ public class CoinMultiplierEvent : MonoBehaviour
             coinMulEnum = ScoreCalculator(_dotProd);
 
             OnDiving(coinMulEnum.ToString(), (int)coinMulEnum);     //event
+            
+            
         }
 
     }
