@@ -24,6 +24,7 @@ public class Destructible : MonoBehaviour
         if (player.tag == "Player") {
             if (player.GetComponent<Player>().tuckedIn)
             {
+               // gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 Instantiate(_damagedVersion, transform.position, transform.rotation);
                 Destroy(gameObject);
             }

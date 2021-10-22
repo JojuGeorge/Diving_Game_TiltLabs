@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody _rb;
     private CheckGrounded _checkGrounded;
-    private CapsuleCollider _capsuleCollider;
-    private float _playerColliderHeight = 20.8f;
+    private BoxCollider _boxCollider;
+    private SphereCollider _sphereCollider;
 
     public enum ButtonState { Off, Down, Held, Up}                  // For getting input from Update() and move obj based on input in FixedUpdate();
     public ButtonState mouseButtonState = ButtonState.Off;
@@ -40,7 +40,9 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _checkGrounded = GetComponent<CheckGrounded>();
-        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        _boxCollider = GetComponentInChildren<BoxCollider>();
+        _sphereCollider = GetComponentInChildren<SphereCollider>();
+
     }
 
     void Update()
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour
 
         if (!_checkGrounded.Grounded && falling && Input.GetMouseButton(0))
         {
-            _rb.freezeRotation = false;
+            //_rb.freezeRotation = false;
             TuckAndFlip();
             tuckedIn = true;
         }
@@ -93,18 +95,23 @@ public class Player : MonoBehaviour
         if (falling && tuckedIn)
         {
             _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(0f, -_gravityModifierTuckedIn, 0f), .5f);
-            _capsuleCollider.height = _playerColliderHeightTuckedIn;
+
+            // When player is in squat pos, enable sphere to resemble with model and disable the box collider
+            _boxCollider.enabled = false;
+            _sphereCollider.enabled = true;
 
         }
         else if (falling && !tuckedIn)
         {
 
             _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(0f, -_gravityModifierNormal, 0f), .2f);
-            _capsuleCollider.height = _playerColliderHeight;
+            _boxCollider.enabled = true;
+            _sphereCollider.enabled = false;
 
         }
         else if (_checkGrounded.Grounded || !falling) {
-            _capsuleCollider.height = _playerColliderHeight;
+            _boxCollider.enabled = true;
+            _sphereCollider.enabled = false;
         }
 
 
