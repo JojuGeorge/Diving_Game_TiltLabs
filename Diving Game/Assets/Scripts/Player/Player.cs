@@ -12,12 +12,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rotateAngle;
     
     [Range(1,5)] [SerializeField] private float _fallingThreshold;
-    [Range(8, 12)] [SerializeField] private float _gravityModifierNormal;
+    [Range(8, 12)] [SerializeField] private float _gravityModifierNormal;       // Ideally put normal falling velocity less than the tuckedIn
     [Range(12, 20)] [SerializeField] private float _gravityModifierTuckedIn;
+
+    [SerializeField] private float _playerColliderHeightTuckedIn;
 
 
     private Rigidbody _rb;
     private CheckGrounded _checkGrounded;
+    private CapsuleCollider _capsuleCollider;
+    private float _playerColliderHeight = 20.8f;
 
     public enum ButtonState { Off, Down, Held, Up}                  // For getting input from Update() and move obj based on input in FixedUpdate();
     public ButtonState mouseButtonState = ButtonState.Off;
@@ -31,6 +35,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _checkGrounded = GetComponent<CheckGrounded>();
+        _capsuleCollider = GetComponentInChildren<CapsuleCollider>();
     }
 
     void Update()
@@ -82,16 +87,21 @@ public class Player : MonoBehaviour
         if (falling && tuckedIn)
         {
             _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(0f, -_gravityModifierTuckedIn, 0f), .5f);
+            _capsuleCollider.height = _playerColliderHeightTuckedIn;
 
         }
-        else if(falling && !tuckedIn) {
+        else if (falling && !tuckedIn)
+        {
 
             _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(0f, -_gravityModifierNormal, 0f), .2f);
+            _capsuleCollider.height = _playerColliderHeight;
 
+        }
+        else if (_checkGrounded.Grounded || !falling) {
+            _capsuleCollider.height = _playerColliderHeight;
         }
 
 
-        Debug.Log(Mathf.Abs(_rb.velocity.y));
     }
 
 
