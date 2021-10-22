@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private bool _canJump;
     [SerializeField] private float _power;
-    [Range(1,5)] [SerializeField] private float _maxPower;
+    [Range(1,2)] [SerializeField] private float _minPower;
+    [Range(4,6)] [SerializeField] private float _maxPower;
     [SerializeField] private float _rotateAngle;
     
     [Range(1,5)] [SerializeField] private float _fallingThreshold;
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
         _checkGrounded = GetComponent<CheckGrounded>();
         _boxCollider = GetComponent<BoxCollider>();
         _sphereCollider = GetComponent<SphereCollider>();
-
+        _power = _minPower;
     }
 
     void Update()
@@ -127,7 +128,7 @@ public class Player : MonoBehaviour
 
             if (_power >= _maxPower)
             {
-                _power = 0f;
+                _power = _minPower;
             }
 
             mouseButtonState = ButtonState.Held;

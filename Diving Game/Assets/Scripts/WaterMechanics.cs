@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterMechanics : MonoBehaviour
 {
+
     void Start()
     {
         
@@ -20,7 +21,7 @@ public class WaterMechanics : MonoBehaviour
             Debug.Log("(In WaterMechanics.cs )Player dived into the water");
             Rigidbody playerRB = other.gameObject.GetComponent<Rigidbody>();
 
-            playerRB.mass = .3f;
+         //   playerRB.mass = .3f;
         }
     }
 }
