@@ -417,6 +417,8 @@ GameObject:
   m_Component:
   - component: {fileID: 184426004}
   - component: {fileID: 184426003}
+  - component: {fileID: 184426008}
+  - component: {fileID: 184426007}
   - component: {fileID: 184426002}
   - component: {fileID: 184426001}
   - component: {fileID: 184426005}
@@ -526,6 +528,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinMulEnum: 0
+--- !u!135 &184426007
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184426000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 0.28, z: -0.1}
+--- !u!65 &184426008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184426000}
+  m_Material: {fileID: 13400000, guid: b3c3ac749db0d4d4fb173376d64f53e6, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 1.02, z: 0.2}
+  m_Center: {x: 0, y: 0.52, z: 0}
 --- !u!1 &324455568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1760,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 704d9fbc6f7fc054f9d289b2b18caf0d, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 993456154784633960, guid: 704d9fbc6f7fc054f9d289b2b18caf0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -4.8061027e-32
@@ -2503,37 +2535,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 704d9fbc6f7fc054f9d289b2b18caf0d, type: 3}
   m_PrefabInstance: {fileID: 659789044}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &659789046 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 704d9fbc6f7fc054f9d289b2b18caf0d, type: 3}
-  m_PrefabInstance: {fileID: 659789044}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &659789047
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659789046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 6.28, z: -2}
---- !u!65 &659789048
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659789046}
-  m_Material: {fileID: 13400000, guid: b3c3ac749db0d4d4fb173376d64f53e6, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.21, y: 20.4, z: 3.24}
-  m_Center: {x: 0, y: 10.5, z: 0}
 --- !u!1 &672302471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,9 +2909,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159189463}
-  m_Layer: 0
+  - component: {fileID: 1159189465}
+  - component: {fileID: 1159189464}
+  m_Layer: 4
   m_Name: WaterBody
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2932,6 +2935,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1159189464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159189462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df7f7a651cbfc94d90f617a33fbc187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1159189465
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159189462}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 40, y: 15, z: 50}
+  m_Center: {x: 0, y: -7.8, z: 0}
 --- !u!1 &1204158093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,10 +2987,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204158093}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1204158095
@@ -3208,8 +3236,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394898089}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
+  m_IsTrigger: 0
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

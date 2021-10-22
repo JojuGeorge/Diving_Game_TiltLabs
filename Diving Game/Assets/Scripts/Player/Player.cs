@@ -40,8 +40,8 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _checkGrounded = GetComponent<CheckGrounded>();
-        _boxCollider = GetComponentInChildren<BoxCollider>();
-        _sphereCollider = GetComponentInChildren<SphereCollider>();
+        _boxCollider = GetComponent<BoxCollider>();
+        _sphereCollider = GetComponent<SphereCollider>();
 
     }
 
@@ -155,6 +155,6 @@ public class Player : MonoBehaviour
 
     // Coin multiplier based on diving angle - calc done in CoinMultiplierEvent.cs
     private void DiveAngleCoinMultiplier(string score, float coinMul) {
-        Debug.Log("coin multiplier = " + score + " = " + coinMul);
+        Debug.Log("(in player.cs)coin multiplier = " + score + " = " + coinMul);
     }
 }

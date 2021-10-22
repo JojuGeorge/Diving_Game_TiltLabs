@@ -14,23 +14,13 @@ public class CoinMultiplierEvent : MonoBehaviour
     public static event DiveAng OnDiving;
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Water") { 
+        if (other.tag == "Water") {
             _dotProd = DiveAngleCalc();
             coinMulEnum = ScoreCalculator(_dotProd);
 
-            OnDiving(coinMulEnum.ToString(), (int)coinMulEnum);     //event
-            
-            
-        }
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Water") {
-            Debug.Log("Water>>>>>>>>>>>>>>>>>");
+            OnDiving(coinMulEnum.ToString(), (int)coinMulEnum);     //event       
         }
     }
 

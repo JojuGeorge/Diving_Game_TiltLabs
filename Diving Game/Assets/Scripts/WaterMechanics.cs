@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class WaterMechanics : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player") {
+            Debug.Log("(In WaterMechanics.cs )Player dived into the water");
+            Rigidbody playerRB = other.gameObject.GetComponent<Rigidbody>();
+
+            playerRB.mass = .3f;
+        }
     }
 }
