@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinMultiplier : MonoBehaviour
+public class CoinMultiplierEvent : MonoBehaviour
 {
 
     private float _dotProd;
@@ -11,7 +11,7 @@ public class CoinMultiplier : MonoBehaviour
     public DiveScoreValue coinMulEnum;
 
     public delegate void DiveAng(string value, float multiplyValue);
-    public static event DiveAng DiveAngScore;
+    public static event DiveAng OnDiving;
 
     void Start()
     {
@@ -29,12 +29,7 @@ public class CoinMultiplier : MonoBehaviour
             _dotProd = DiveAngleCalc();
             coinMulEnum = ScoreCalculator(_dotProd);
 
-            DiveAngScore(coinMulEnum.ToString(), (int)coinMulEnum);     //event
-
-
-         //   Debug.Log(" dot prod = " + _dotProd);
-       //     Debug.Log("coin mul score = " + coinMulEnum.ToString() + " ___ " + (int)coinMulEnum);
-
+            OnDiving(coinMulEnum.ToString(), (int)coinMulEnum);     //event
         }
 
     }
