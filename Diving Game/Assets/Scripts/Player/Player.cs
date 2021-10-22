@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
     public bool tuckedIn;
 
 
+    private void OnEnable()
+    {
+        CoinMultiplierEvent.OnDiving += DiveAngleCoinMultiplier;
+    }
+
 
     void Start()
     {
@@ -61,6 +66,7 @@ public class Player : MonoBehaviour
         {
             falling = false;
         }
+
 
     }
 
@@ -137,5 +143,11 @@ public class Player : MonoBehaviour
         Vector3 position = gameObject.GetComponentInChildren<Collider>().bounds.center;
         transform.RotateAround(position, Vector3.left, -_rotateAngle);
        
+    }
+
+
+    // Coin multiplier based on diving angle - calc done in CoinMultiplierEvent.cs
+    private void DiveAngleCoinMultiplier(string score, float coinMul) {
+        Debug.Log("coin multiplier = " + score + " = " + coinMul);
     }
 }
