@@ -19,9 +19,9 @@ public class WaterMechanics : MonoBehaviour
     {
         if (other.tag == "Player") {
             Debug.Log("(In WaterMechanics.cs )Player dived into the water");
-            Rigidbody playerRB = other.gameObject.GetComponent<Rigidbody>();
+            //Rigidbody playerRB = other.gameObject.GetComponent<Rigidbody>();
+            other.GetComponent<Player>().inWater = true;
 
-         //   playerRB.mass = .3f;
         }
     }
 }

@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     public bool falling;
     public bool tuckedIn;
-
+    public bool inWater;
 
     private void OnEnable()
     {
@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         {
             JumpPowerUP();
             _canJump = true;
+            inWater = false;
         }
         else if (!_checkGrounded.Grounded || falling) {
             _canJump = false;
@@ -69,6 +70,8 @@ public class Player : MonoBehaviour
         {
             falling = false;
         }
+
+
 
 
     }
