@@ -424,8 +424,8 @@ GameObject:
   - component: {fileID: 184426002}
   - component: {fileID: 184426001}
   - component: {fileID: 184426005}
-  - component: {fileID: 184426006}
   - component: {fileID: 184426009}
+  - component: {fileID: 184426006}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2862,13 +2862,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.32728535, y: -0.28838155, z: 0.28606957, w: 0.8531616}
-  m_LocalPosition: {x: 2.572, y: 3.288, z: -0.511}
+  m_LocalRotation: {x: 0.18180446, y: -0.49587297, z: 0.24143536, w: 0.81410456}
+  m_LocalPosition: {x: 3.28, y: 2.23, z: -0.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 46.34, y: -26.201, z: 25.697}
+  m_LocalEulerAnglesHint: {x: 32.375, y: -58.434, z: 14.594}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2967,7 +2967,7 @@ MonoBehaviour:
   _boundingBoxGO: {fileID: 1394898089}
   _cameraGO: {fileID: 963194225}
   _postProcessingVolume: {fileID: 1257942269}
-  _underWaterColor: {r: 0.4250919, g: 0.6208063, b: 0.8396226, a: 0}
+  _underWaterColor: {r: 0.61629283, g: 0.743887, b: 0.8867924, a: 0}
 --- !u!65 &1159189465
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2981,6 +2981,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 15, z: 50}
   m_Center: {x: 0, y: -7.8, z: 0}
+--- !u!1 &1164832663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164832665}
+  - component: {fileID: 1164832664}
+  m_Layer: 0
+  m_Name: CoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1164832664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164832663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00ca501edd8c034183bfa6859f961d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinMulEnum: 0
+--- !u!4 &1164832665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164832663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204158093
 GameObject:
   m_ObjectHideFlags: 0

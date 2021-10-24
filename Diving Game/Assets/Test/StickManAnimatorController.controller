@@ -36,9 +36,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Falling
-    m_EventTreshold: 1
-  - m_ConditionMode: 1
     m_ConditionEvent: TuckedIn
     m_EventTreshold: 0
   - m_ConditionMode: 2
@@ -94,8 +91,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: InWater
+  - m_ConditionMode: 2
+    m_ConditionEvent: TuckedIn
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8691595177028970011}

@@ -33,8 +33,8 @@ public class WaterMechanics : MonoBehaviour
 
         if (_underWater)
         {
-            _vignette.intensity.value = 0.35f;
-            _depthOfField.focusDistance.value = 1f;
+            _vignette.intensity.value = 0.32f;
+            _depthOfField.focusDistance.value = 3f;
             _colorAdjustments.colorFilter.value = _underWaterColor ;
         }
         else {

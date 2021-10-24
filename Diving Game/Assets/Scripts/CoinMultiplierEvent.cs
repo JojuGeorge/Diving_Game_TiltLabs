@@ -20,7 +20,8 @@ public class CoinMultiplierEvent : MonoBehaviour
             _dotProd = DiveAngleCalc();
             coinMulEnum = ScoreCalculator(_dotProd);
 
-            OnDiving(coinMulEnum.ToString(), (int)coinMulEnum);     //event       
+            OnDiving(coinMulEnum.ToString(), (int)coinMulEnum);     //event
+            Debug.Log(coinMulEnum.ToString()+" - "+ (int)coinMulEnum);
         }
     }
 
