@@ -29,6 +29,7 @@ public class AnimationController : MonoBehaviour
 
     private void StrechedAnim() {
         _anim.SetBool("Falling", _player.falling);
+        _anim.SetBool("InWater", _player.inWater);
     }
 
     private void TuckedInAnim() {

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         Rigidbody _playerRB = _player.GetComponent<Rigidbody>();
         _playerRB.freezeRotation = true;
         _playerRB.velocity = Vector3.zero;
+        _player.inWater = false;
     }
 
 }

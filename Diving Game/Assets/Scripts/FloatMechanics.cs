@@ -16,15 +16,6 @@ public class FloatMechanics : MonoBehaviour
 
     void FixedUpdate()
     {
-        //_forceFactor = 1f - ((transform.position.y - _waterLevel) / _floatThreshold);
-
-        //if (_forceFactor > 0f) {
-        //    _floatForce = -Physics.gravity * (_forceFactor - GetComponent<Rigidbody>().velocity.y * _waterDensity);
-        //    _floatForce += new Vector3(0f, -_downForce, 0f);
-        //    GetComponent<Rigidbody>().AddForceAtPosition(_floatForce, transform.position);
-        //}
-
-
 
         if (_player.inWater)
         {
@@ -41,6 +32,9 @@ public class FloatMechanics : MonoBehaviour
 
             if (transform.rotation != Quaternion.Euler(0f, 0f, 0f))
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, 0f), .02f);
+        }
+        else {
+            _rb.useGravity = true;
         }
     }
 }

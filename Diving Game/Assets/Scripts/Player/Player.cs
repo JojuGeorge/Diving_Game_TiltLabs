@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
             Jump();
         }
 
-        if (!_checkGrounded.Grounded && falling && Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !_checkGrounded.Grounded && falling && !inWater)
         {
             //_rb.freezeRotation = false;
             TuckAndFlip();
@@ -151,9 +151,10 @@ public class Player : MonoBehaviour
 
     // On tucking in slowly rotate the body
     private void TuckAndFlip() {
+        
         Vector3 position = gameObject.GetComponentInChildren<Collider>().bounds.center;
         transform.RotateAround(position, Vector3.left, -_rotateAngle);
-       
+        
     }
 
 
