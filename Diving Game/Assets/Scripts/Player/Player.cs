@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public bool falling;
     public bool tuckedIn;
     public bool inWater;
+    public float maxMouseHoldDownDelay;
+    private float _mouseHoldDownDelay;
 
     private void OnEnable()
     {
@@ -71,17 +73,16 @@ public class Player : MonoBehaviour
             falling = false;
         }
 
-
-
-
     }
+
+
 
     private void FixedUpdate()
     {
         // If grounded and jump = true i.e button release then add force to player
         if ( mouseButtonState == ButtonState.Up && _canJump)
         {
-            Jump();
+           Jump();
         }
 
         if (Input.GetMouseButton(0) && !_checkGrounded.Grounded && falling && !inWater)
@@ -122,12 +123,15 @@ public class Player : MonoBehaviour
     }
 
 
-    // For powering up the jump
+    // For powering up the jump while grounded
     // When jump power reaches max it will start from 0 again
     private void JumpPowerUP() {
         if (Input.GetMouseButton(0))
         {
-            _power += Time.deltaTime;
+            _mouseHoldDownDelay += Time.deltaTime;
+
+            if(_mouseHoldDownDelay >= maxMouseHoldDownDelay)
+                _power += Time.deltaTime;
 
             if (_power >= _maxPower)
             {
@@ -139,10 +143,19 @@ public class Player : MonoBehaviour
 
         // To get mouse button state to make chnages on physics obj in the FixedUpdate()
         if (Input.GetMouseButtonUp(0)) {
-            mouseButtonState = ButtonState.Up;
+            if (_mouseHoldDownDelay >= maxMouseHoldDownDelay)
+            {
+                mouseButtonState = ButtonState.Up;
+                _mouseHoldDownDelay = 0f;
+            }
+            else {
+                _mouseHoldDownDelay = 0f;
+            }
         }
     }
 
+
+    // Adds force to player for Jump
     private void Jump() {
       
         _rb.AddForce(new Vector3(0f, 1f, 1f)* _jumpForce * _power, ForceMode.Force); 
