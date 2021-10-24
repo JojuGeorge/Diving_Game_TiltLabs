@@ -2964,6 +2964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df7f7a651cbfc94d90f617a33fbc187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boundingBoxGO: {fileID: 1394898089}
+  _cameraGO: {fileID: 963194225}
+  _postProcessingVolume: {fileID: 1257942269}
+  _underWaterColor: {r: 0.4250919, g: 0.6208063, b: 0.8396226, a: 0}
 --- !u!65 &1159189465
 BoxCollider:
   m_ObjectHideFlags: 0
