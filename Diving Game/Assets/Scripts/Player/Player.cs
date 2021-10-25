@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     [Range(8, 12)] [SerializeField] private float _gravityModifierNormal;       // Ideally put normal falling velocity less than the tuckedIn
     [Range(12, 20)] [SerializeField] private float _gravityModifierTuckedIn;
 
-    [SerializeField] private float _playerColliderHeightTuckedIn;
+    //[SerializeField] private float _playerColliderHeightTuckedIn;
 
 
     private Rigidbody _rb;
@@ -30,8 +30,11 @@ public class Player : MonoBehaviour
     public bool falling;
     public bool tuckedIn;
     public bool inWater;
+    public int coins;
+    
     public float maxMouseHoldDownDelay;
     private float _mouseHoldDownDelay;
+
 
     private void OnEnable()
     {
@@ -171,8 +174,15 @@ public class Player : MonoBehaviour
     }
 
 
-    // Coin multiplier based on diving angle - calc done in CoinMultiplierEvent.cs
-    private void DiveAngleCoinMultiplier(string score, float coinMul) {
-        Debug.Log("(in player.cs)coin multiplier = " + score + " = " + coinMul);
+    public void AddCoins(int amount) {
+        coins += amount;
     }
+
+    // Coin multiplier based on diving angle - calc done in CoinMultiplierEvent.cs
+    private void DiveAngleCoinMultiplier(string score, int coinMul) {
+        Debug.Log("(in player.cs)coin multiplier = " + score + " coin multiplied by = " + coinMul);
+        coins *= coinMul;
+    }
+
+
 }

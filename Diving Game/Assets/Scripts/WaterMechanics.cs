@@ -47,7 +47,7 @@ public class WaterMechanics : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
-            Debug.Log("(In WaterMechanics.cs )Player dived into the water");
+           // Debug.Log("(In WaterMechanics.cs )Player dived into the water");
             other.GetComponent<Player>().inWater = true;
             _underWater = true;
         }
