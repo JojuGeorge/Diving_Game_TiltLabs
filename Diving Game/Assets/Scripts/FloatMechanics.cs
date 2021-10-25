@@ -8,10 +8,22 @@ public class FloatMechanics : MonoBehaviour
     private Player _player;
     private Rigidbody _rb;
 
+    [SerializeField]private float _defaultDepth;
+    [SerializeField] private float _waterLevel;
+
+    private float _divingDepthY;
+
+
+    private void OnEnable()
+    {
+        CoinMultiplierEvent.OnDiving += DivingDepth;
+    }
+
     void Start()
     {
         _player = GetComponent<Player>();
         _rb = GetComponent<Rigidbody>();
+        _divingDepthY = _defaultDepth;
     }
 
     void FixedUpdate()
@@ -20,7 +32,7 @@ public class FloatMechanics : MonoBehaviour
         if (_player.inWater)
         {
 
-            Vector3 targetPos = new Vector3(0f, -35f, 0f);
+            Vector3 targetPos = new Vector3(0f, (_divingDepthY + _waterLevel) , 0f);
 
             transform.position = Vector3.Lerp(transform.position, targetPos, .01f);
 
@@ -36,5 +48,10 @@ public class FloatMechanics : MonoBehaviour
         else {
             _rb.useGravity = true;
         }
+    }
+
+    private void DivingDepth(string scoreName, int scoreValue) {
+        _divingDepthY = _defaultDepth * scoreValue * -1;
+        Debug.Log(" --- DIVING SCORE : " + scoreName + " --- POINTS : " + scoreValue + " --- COIN MULTIPLIER X" + scoreValue +" --- DEPTH DIVED : " +_divingDepthY);
     }
 }

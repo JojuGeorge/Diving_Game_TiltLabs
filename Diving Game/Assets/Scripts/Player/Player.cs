@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [Range(1,5)] [SerializeField] private float _fallingThreshold;
     [Range(8, 12)] [SerializeField] private float _gravityModifierNormal;       // Ideally put normal falling velocity less than the tuckedIn
     [Range(12, 20)] [SerializeField] private float _gravityModifierTuckedIn;
+    [SerializeField] private Slider _slider;
 
     //[SerializeField] private float _playerColliderHeightTuckedIn;
 
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider>();
         _sphereCollider = GetComponent<SphereCollider>();
         _power = _minPower;
+
     }
 
     void Update()
@@ -125,6 +127,8 @@ public class Player : MonoBehaviour
         }
 
 
+        _slider.minValue = _minPower;
+        _slider.maxValue = _maxPower;
     }
 
 
@@ -143,6 +147,8 @@ public class Player : MonoBehaviour
                 _power = _minPower;
             }
 
+            _slider.value = _power;
+
             mouseButtonState = ButtonState.Held;
         }
 
@@ -152,6 +158,7 @@ public class Player : MonoBehaviour
             {
                 mouseButtonState = ButtonState.Up;
                 _mouseHoldDownDelay = 0f;
+                _slider.value = _minPower;
             }
             else {
                 _mouseHoldDownDelay = 0f;
@@ -184,7 +191,7 @@ public class Player : MonoBehaviour
 
     // Coin multiplier based on diving angle - calc done in CoinMultiplierEvent.cs
     private void DiveAngleCoinMultiplier(string score, int coinMul) {
-        Debug.Log("(in player.cs)coin multiplier = " + score + " coin multiplied by = " + coinMul);
+        //Debug.Log("(in player.cs)coin multiplier = " + score + " coin multiplied by = " + coinMul);
         coins *= coinMul;
         if (_coinText != null)
             _coinText.text = coins.ToString(); ;
