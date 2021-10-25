@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     private CheckGrounded _checkGrounded;
     private BoxCollider _boxCollider;
     private SphereCollider _sphereCollider;
+    [SerializeField ]private Text _coinText;
 
     public enum ButtonState { Off, Down, Held, Up}                  // For getting input from Update() and move obj based on input in FixedUpdate();
     public ButtonState mouseButtonState = ButtonState.Off;
@@ -176,12 +178,16 @@ public class Player : MonoBehaviour
 
     public void AddCoins(int amount) {
         coins += amount;
+        if(_coinText != null)
+            _coinText.text = coins.ToString(); ;
     }
 
     // Coin multiplier based on diving angle - calc done in CoinMultiplierEvent.cs
     private void DiveAngleCoinMultiplier(string score, int coinMul) {
         Debug.Log("(in player.cs)coin multiplier = " + score + " coin multiplied by = " + coinMul);
         coins *= coinMul;
+        if (_coinText != null)
+            _coinText.text = coins.ToString(); ;
     }
 
 
