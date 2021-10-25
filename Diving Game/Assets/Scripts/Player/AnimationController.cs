@@ -21,6 +21,7 @@ public class AnimationController : MonoBehaviour
         IdleAnim();
         StrechedAnim();
         TuckedInAnim();
+        DivePose();
     }
 
     private void IdleAnim() {
@@ -34,5 +35,9 @@ public class AnimationController : MonoBehaviour
 
     private void TuckedInAnim() {
         _anim.SetBool("TuckedIn", _player.tuckedIn);
+    }
+
+    private void DivePose() {
+        _anim.SetBool("DivePose", _player.divePose);
     }
 }

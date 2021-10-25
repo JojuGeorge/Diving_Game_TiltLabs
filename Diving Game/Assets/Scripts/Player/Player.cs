@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public bool tuckedIn;
     public bool inWater;
     public int coins;
+    public bool divePose;
     
     public float maxMouseHoldDownDelay;
     private float _mouseHoldDownDelay;
@@ -67,7 +68,8 @@ public class Player : MonoBehaviour
         }
         else if (!_checkGrounded.Grounded || falling) {
             _canJump = false;
-            _power = 0f;  
+            _power = 0f;
+            divePose = false;
         }
 
         // Checking if player is falling
@@ -139,8 +141,11 @@ public class Player : MonoBehaviour
         {
             _mouseHoldDownDelay += Time.deltaTime;
 
-            if(_mouseHoldDownDelay >= maxMouseHoldDownDelay)
+            if (_mouseHoldDownDelay >= maxMouseHoldDownDelay)
+            {
                 _power += Time.deltaTime;
+                divePose = true;
+            }
 
             if (_power >= _maxPower)
             {
@@ -159,6 +164,7 @@ public class Player : MonoBehaviour
                 mouseButtonState = ButtonState.Up;
                 _mouseHoldDownDelay = 0f;
                 _slider.value = _minPower;
+                divePose = false;
             }
             else {
                 _mouseHoldDownDelay = 0f;

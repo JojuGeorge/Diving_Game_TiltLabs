@@ -33,8 +33,8 @@ public class WaterMechanics : MonoBehaviour
 
         if (_underWater)
         {
-            _vignette.intensity.value = 0.32f;
-            _depthOfField.focusDistance.value = 3f;
+            _vignette.intensity.value = 0.35f;
+            _depthOfField.focusDistance.value = 1f;
             _colorAdjustments.colorFilter.value = _underWaterColor ;
         }
         else {
@@ -47,7 +47,7 @@ public class WaterMechanics : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
-           // Debug.Log("(In WaterMechanics.cs )Player dived into the water");
+          //  Debug.Log("(In WaterMechanics.cs )Player dived into the water");
             other.GetComponent<Player>().inWater = true;
             _underWater = true;
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FloatMechanics : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class FloatMechanics : MonoBehaviour
     private Player _player;
     private Rigidbody _rb;
 
-    [SerializeField]private float _defaultDepth;
+    [SerializeField] private float _defaultDepth;
     [SerializeField] private float _waterLevel;
+    [SerializeField] private Text _resultText;
 
     private float _divingDepthY;
 
@@ -53,5 +55,7 @@ public class FloatMechanics : MonoBehaviour
     private void DivingDepth(string scoreName, int scoreValue) {
         _divingDepthY = _defaultDepth * scoreValue * -1;
         Debug.Log(" --- DIVING SCORE : " + scoreName + " --- POINTS : " + scoreValue + " --- COIN MULTIPLIER X" + scoreValue +" --- DEPTH DIVED : " +_divingDepthY);
+        if(_resultText != null)
+        _resultText.text = " --- DIVING SCORE : " + scoreName + " --- POINTS : " + scoreValue + " --- COIN MULTIPLIER X" + scoreValue + " --- DEPTH DIVED : " + _divingDepthY;
     }
 }
